@@ -1365,6 +1365,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &1209751196 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7995945497273649090, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4955512339129453185}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1494830367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,15 +1783,70 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1333843766629161818, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262708663436439479, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262708663436439479, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262708663436439479, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 3574835817438073321, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
         type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 671375268}
+    - target: {fileID: 3574835817438073321, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      propertyPath: muzzleFlash
+      value: 
+      objectReference: {fileID: 1209751196}
+    - target: {fileID: 3574835817438073321, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      propertyPath: muzzleFlush
+      value: 
+      objectReference: {fileID: 1209751196}
     - target: {fileID: 3872154226872709849, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
         type: 3}
       propertyPath: m_Name
       value: Gun Offset
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995945497273649090, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995945497273649090, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995945497273649090, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995945497273649090, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995945497273649090, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.26
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

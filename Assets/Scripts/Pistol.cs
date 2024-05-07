@@ -21,6 +21,7 @@ public class Pistol : Gun
         {
             isShooting = true;
             gunAnimator.Play(SHOOTING_ANIMATION, -1, 0f);
+            PlayMuzzleFlashParticle();
             lastShotTime = Time.time;
             shootCount++;
             StartCoroutine(CrosshairTilting.Instance.TiltCrossHair(crosshair, shootCount, maxTilt));

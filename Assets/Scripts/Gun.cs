@@ -16,6 +16,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected GameObject bulletPrefab; // The bullet prefab
     [SerializeField] protected AmmoUI ammoUI; // Reference to the AmmoUI script to update ammo count
     [SerializeField] protected RectTransform crosshair; // Reference to the player's camera
+    [SerializeField] protected ParticleSystem muzzleFlash;
 
 
     [SerializeField] protected int maxAmmo = 30; // Maximum ammo
@@ -26,10 +27,12 @@ public abstract class Gun : MonoBehaviour
     protected virtual void Awake()
     {
         gunAnimator = GetComponent<Animator>();
+        muzzleFlash = GetComponentInChildren<ParticleSystem>();
     }
 
     protected virtual void Start()
     {
+
         reloadAnimationDuration = GetAnimationClipDuration(RELOAD_ANIMATION);
         currentAmmo = maxAmmo;
         ammoUI.UpdateAmmoDisplay(currentAmmo);
@@ -77,5 +80,10 @@ public abstract class Gun : MonoBehaviour
             }
         }
         return 0f;  // Return 0 if not found (handle this case appropriately)
+    }
+
+    protected void PlayMuzzleFlashParticle()
+    {
+        muzzleFlash.Play();
     }
 }
