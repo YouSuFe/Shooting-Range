@@ -2,50 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public abstract class Gun : MonoBehaviour
 {
-    private const string RELOAD_ANIMATION = "Reload";
-    private const string SHOOTING_ANIMATION = "Shoot";
+    protected const string RELOAD_ANIMATION = "Reload";
+    protected const string SHOOTING_ANIMATION = "Fire_Anim";
 
-    public Transform shootingPoint;
-    public Animator gunAnimator;
-    public GameObject bulletPrefab; // The bullet prefab
-    public AmmoUI ammoUI; // Reference to the AmmoUI script to update ammo count
-    public RectTransform crosHair; // Reference to the player's camera
-
-    public int maxAmmo = 30; // Maximum ammo
-    public float reloadTime = 1.0f; // Time it takes to reload
-    private int currentAmmo; // Current ammo count
-    private bool isReloading = false; // Is the gun currently reloading
+    [SerializeField] protected Transform shootingPoint;
+    [SerializeField] protected Animator gunAnimator;
+    [SerializeField] protected GameObject bulletPrefab; // The bullet prefab
+    [SerializeField] protected AmmoUI ammoUI; // Reference to the AmmoUI script to update ammo count
+    [SerializeField] protected RectTransform crosshair; // Reference to the player's camera
 
 
-    private bool isShooting = false;
-    private float lastShotTime = 0f;
-    private float tiltDelay = 0.5f; // Delay before tilting resets
-    private float maxTilt = 200f; // Maximum tilt range
-    private int shotCount = 0; // Count the number of shots
+    [SerializeField] protected int maxAmmo = 30; // Maximum ammo
+    [SerializeField] protected float reloadTime = 1.5f; // Time it takes to reload
+    protected int currentAmmo; // Current ammo count
+    protected bool isReloading = false; // Is the gun currently reloading
 
-    private void Awake()
+    protected virtual void Awake()
     {
         gunAnimator = GetComponent<Animator>();
     }
 
-    void Start()
+    protected virtual void Start()
     {
-        currentAmmo = maxAmmo; // Initialize ammo count
-        ammoUI.UpdateAmmoDisplay(currentAmmo); // Update UI at the start
+        currentAmmo = maxAmmo;
+        ammoUI.UpdateAmmoDisplay(currentAmmo);
     }
 
-    void Update()
+    public abstract void Fire();
+
+    protected virtual IEnumerator Reload()
     {
-        if (isShooting && Time.time - lastShotTime > tiltDelay)
-        {
-            StartCoroutine(ResetTilt());
-            isShooting = false;
-        }
+        isReloading = true;
+        gunAnimator.SetTrigger(RELOAD_ANIMATION);
+        yield return new WaitForSeconds(reloadTime);
+        currentAmmo = maxAmmo; // Refill Ammo
+        ShowCurrentAmmo(); // Update UI
+        isReloading = false;
     }
 
-    GameObject CreateBulletAndShoot(Vector3 targetPoint)
+    protected void ShowCurrentAmmo()
+    {
+        ammoUI.UpdateAmmoDisplay(currentAmmo);
+    }
+
+    protected GameObject CreateBulletAndShoot(Vector3 targetPoint)
     {
         if (currentAmmo > 0)
         {
@@ -55,89 +57,5 @@ public class Gun : MonoBehaviour
             return bullet;
         }
         return null;
-    }
-
-    public void Fire()
-    {
-        if (isReloading) return;
-
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(crosHair.transform.position);
-
-        Vector3 targetPoint = ray.GetPoint(1000); // Default target point if ray hits nothing
-        Debug.DrawRay(shootingPoint.position, (targetPoint - shootingPoint.position).normalized * 1000, Color.blue, 2f);
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            targetPoint = hit.point; // Update target point if ray hits something
-        }
-
-        GameObject bullet = CreateBulletAndShoot(targetPoint);
-        if (bullet != null && currentAmmo > 0)
-        {
-            isShooting = true;
-            gunAnimator.Play("Fire_Anim", -1, 0f);
-            lastShotTime = Time.time;
-            shotCount++;
-            StartCoroutine(TiltCrossHair());
-            currentAmmo--;
-            ShowCurrentAmmo(); // Update the ammo display each time a bullet is fired
-            if(currentAmmo <= 0)
-            {
-                StartCoroutine(Reload());
-            }
-        }
-    }
-
-    void ShowCurrentAmmo()
-    {
-        ammoUI.UpdateAmmoDisplay(currentAmmo);
-    }
-
-    IEnumerator Reload()
-    {
-        isReloading = true;
-        gunAnimator.SetTrigger(RELOAD_ANIMATION);
-        yield return new WaitForSeconds(reloadTime); // Wait for reload time
-        currentAmmo = maxAmmo; // Refill ammo
-        ShowCurrentAmmo(); // Update the UI
-        isReloading = false;
-    }
-
-
-    IEnumerator TiltCrossHair()
-    {
-        float tiltX = shotCount > 1 ? Random.Range(-30f, 30f) : 0; // No x-axis tilt on the first shot
-        float tiltY = Random.Range(50f, 75f);
-        float duration = 0.2f;
-        float time = 0;
-
-        Vector3 originalPosition = crosHair.transform.localPosition;
-        float newYPosition = Mathf.Min(originalPosition.y + tiltY, maxTilt);
-        Vector3 targetPosition = new Vector3(originalPosition.x + tiltX, newYPosition, originalPosition.z);
-
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            crosHair.transform.localPosition = Vector3.Lerp(originalPosition, targetPosition, time / duration);
-            yield return null;
-        }
-    }
-
-    IEnumerator ResetTilt()
-    {
-        float duration = 0.2f;
-        float time = 0;
-        Vector3 initialPosition = crosHair.transform.localPosition;
-        Vector3 zeroPosition = new Vector3(0, 0, initialPosition.z); // Reset to zero on x and y, keep z unchanged
-
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            crosHair.transform.localPosition = Vector3.Lerp(initialPosition, zeroPosition, time / duration);
-            yield return null;
-        }
-
-        shotCount = 0; // Reset shot count after tilting resets
     }
 }

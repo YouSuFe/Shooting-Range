@@ -467,7 +467,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2738520558268228719, guid: 748d19574625db444877ca05561b6aea,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2570828911822763454}
+      addedObject: {fileID: 3133259440841421944}
+    - targetCorrespondingSourceObject: {fileID: 2738520558268228719, guid: 748d19574625db444877ca05561b6aea,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3574835817438073321}
   m_SourcePrefab: {fileID: 100100000, guid: 748d19574625db444877ca05561b6aea, type: 3}
 --- !u!4 &8106703164261528502 stripped
 Transform:
@@ -481,7 +485,28 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6758274453547322723}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2570828911822763454
+--- !u!95 &3133259440841421944
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8920253445406435596}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a9af1d25c974e423fa04b680318a7fbd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3574835817438073321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -490,13 +515,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8920253445406435596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d849dfb5adf4d6aae486b38f5aa1c9, type: 3}
+  m_Script: {fileID: 11500000, guid: deed3d08e6d0f49c6b0ecdfd1fdf483d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 5107603023451854468}
+  gunAnimator: {fileID: 3133259440841421944}
   bulletPrefab: {fileID: 6511439296780289277, guid: a6a5bfe561d394b0a890301f603c955a,
     type: 3}
   ammoUI: {fileID: 6858972508748350654}
-  crosHair: {fileID: 0}
-  maxAmmo: 30
-  reloadTime: 1
+  crosshair: {fileID: 0}
+  maxAmmo: 15
+  reloadTime: 1.5
