@@ -539,6 +539,12 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &308723242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8920253445406435596, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4955512339129453185}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &351448409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,12 +1487,33 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 4955512339129453185}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 308723242}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8d849dfb5adf4d6aae486b38f5aa1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1868156510
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308723242}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a9af1d25c974e423fa04b680318a7fbd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1906664330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,6 +1785,11 @@ PrefabInstance:
       objectReference: {fileID: 671375268}
     - target: {fileID: 2570828911822763454, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
         type: 3}
+      propertyPath: gunAnimator
+      value: 
+      objectReference: {fileID: 1868156510}
+    - target: {fileID: 2570828911822763454, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
       propertyPath: tiltPerShot
       value: 75
       objectReference: {fileID: 0}
@@ -1779,7 +1811,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8920253445406435596, guid: ddaecd02e383a4f6fa50601f3a8fb87d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1868156510}
   m_SourcePrefab: {fileID: 100100000, guid: ddaecd02e383a4f6fa50601f3a8fb87d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

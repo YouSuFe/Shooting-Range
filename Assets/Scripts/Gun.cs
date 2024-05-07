@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    private const string RELOAD_ANIMATION = "Reload";
+    private const string SHOOTING_ANIMATION = "Shoot";
+
     public Transform shootingPoint;
+    public Animator gunAnimator;
     public GameObject bulletPrefab; // The bullet prefab
     public AmmoUI ammoUI; // Reference to the AmmoUI script to update ammo count
     public RectTransform crosHair; // Reference to the player's camera
@@ -17,9 +21,14 @@ public class Gun : MonoBehaviour
 
     private bool isShooting = false;
     private float lastShotTime = 0f;
-    private float tiltDelay = 1.0f; // Delay before tilting resets
+    private float tiltDelay = 0.5f; // Delay before tilting resets
     private float maxTilt = 200f; // Maximum tilt range
     private int shotCount = 0; // Count the number of shots
+
+    private void Awake()
+    {
+        gunAnimator = GetComponent<Animator>();
+    }
 
     void Start()
     {
@@ -52,12 +61,6 @@ public class Gun : MonoBehaviour
     {
         if (isReloading) return;
 
-        /* 
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
-        Vector3 targetPoint = ray.GetPoint(1000); // Default target point if ray hits nothing
-        */
-
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(crosHair.transform.position);
 
@@ -73,6 +76,7 @@ public class Gun : MonoBehaviour
         if (bullet != null && currentAmmo > 0)
         {
             isShooting = true;
+            gunAnimator.Play("Fire_Anim", -1, 0f);
             lastShotTime = Time.time;
             shotCount++;
             StartCoroutine(TiltCrossHair());
@@ -93,6 +97,7 @@ public class Gun : MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
+        gunAnimator.SetTrigger(RELOAD_ANIMATION);
         yield return new WaitForSeconds(reloadTime); // Wait for reload time
         currentAmmo = maxAmmo; // Refill ammo
         ShowCurrentAmmo(); // Update the UI
