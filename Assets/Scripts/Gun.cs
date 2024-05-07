@@ -40,6 +40,14 @@ public abstract class Gun : MonoBehaviour
 
     public abstract void Fire();
 
+    public void StartReload()
+    {
+        if (!isReloading && currentAmmo < maxAmmo) // Check if not already reloading and ammo is not full
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
     protected virtual IEnumerator Reload()
     {
         isReloading = true;
