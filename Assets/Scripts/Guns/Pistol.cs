@@ -42,16 +42,15 @@ public class Pistol : Gun
 
     public override void StopFiring()
     {
-        
+        isShooting = false;
     }
 
     void Update()
     {
-        if (isShooting && Time.time - lastShotTime > tiltDelay)
+        if (!isShooting && Time.time - lastShotTime > tiltDelay)
         {
             StartCoroutine(CrosshairTilting.Instance.ResetTilt(crosshair));
             shootCount = 0; // Reset shot count after tilting resets
-            isShooting = false;
         }
     }
 
