@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class Gun : MonoBehaviour
 {
-    protected const string RELOAD_ANIMATION_TRIGGER = "Reload";
-    protected const string RELOAD_ANIMATION_SPEED = "Anim_Speed";
-    protected const string SHOOTING_ANIMATION = "Fire_Anim";
+    private const string RELOAD_ANIMATION_TRIGGER = "Reload";
+    private const string RELOAD_ANIMATION_SPEED = "Anim_Speed";
+    private const string RELOAD_ANIMATION = "Reload_Anim";
     protected const string RELOAD_TIME = "Reload_Time";
-    protected const string RELOAD_ANIMATION = "Reload_Anim";
+    protected const string SHOOTING_ANIMATION = "Fire_Anim";
 
 
     [SerializeField] protected Transform shootingPoint;
@@ -16,7 +16,9 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected GameObject bulletPrefab; // The bullet prefab
     [SerializeField] protected AmmoUI ammoUI; // Reference to the AmmoUI script to update ammo count
     [SerializeField] protected RectTransform crosshair; // Reference to the player's camera
-    [SerializeField] protected ParticleSystem muzzleFlash;
+    [SerializeField] protected ParticleSystem[] muzzleFlashs;
+    [SerializeField] protected AudioClip shootSound;
+    [SerializeField] private AudioClip reloadSound;
 
 
     [SerializeField] protected int maxAmmo = 30; // Maximum ammo
@@ -27,7 +29,7 @@ public abstract class Gun : MonoBehaviour
     protected virtual void Awake()
     {
         gunAnimator = GetComponent<Animator>();
-        muzzleFlash = GetComponentInChildren<ParticleSystem>();
+        muzzleFlashs = GetComponentsInChildren<ParticleSystem>();
     }
 
     protected virtual void Start()
@@ -40,6 +42,10 @@ public abstract class Gun : MonoBehaviour
 
     public abstract void Fire();
 
+    public abstract void StartFiring();
+
+    public abstract void StopFiring();
+
     public void StartReload()
     {
         if (!isReloading && currentAmmo < maxAmmo) // Check if not already reloading and ammo is not full
@@ -51,10 +57,13 @@ public abstract class Gun : MonoBehaviour
     protected virtual IEnumerator Reload()
     {
         isReloading = true;
+        SoundManager.Instance.PlayReloadSound(reloadSound);
         gunAnimator.SetTrigger(RELOAD_ANIMATION_TRIGGER);
         float animationSpeed = gunAnimator.GetFloat(RELOAD_ANIMATION_SPEED);
         float animationDuration = reloadAnimationDuration * animationSpeed;
+
         yield return new WaitForSeconds(animationDuration);
+
         currentAmmo = maxAmmo; // Refill Ammo
         ShowCurrentAmmo(); // Update UI
         isReloading = false;
@@ -92,6 +101,9 @@ public abstract class Gun : MonoBehaviour
 
     protected void PlayMuzzleFlashParticle()
     {
-        muzzleFlash.Play();
+        foreach(ParticleSystem muzzleFlash in muzzleFlashs)
+        {
+            muzzleFlash.Play();
+        }
     }
 }

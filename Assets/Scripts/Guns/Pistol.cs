@@ -20,6 +20,7 @@ public class Pistol : Gun
         if (bullet != null && currentAmmo > 0 && !isReloading)
         {
             isShooting = true;
+            SoundManager.Instance.PlayShootSound(shootSound);
             gunAnimator.Play(SHOOTING_ANIMATION, -1, 0f);
             PlayMuzzleFlashParticle();
             lastShotTime = Time.time;
@@ -32,6 +33,16 @@ public class Pistol : Gun
                 StartCoroutine(Reload());
             }
         }
+    }
+
+    public override void StartFiring()
+    {
+        Fire();
+    }
+
+    public override void StopFiring()
+    {
+        
     }
 
     void Update()
