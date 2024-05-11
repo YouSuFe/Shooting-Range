@@ -44,7 +44,6 @@ public class Rifle : Gun
     {
         if(!isShooting)
         {
-            Debug.Log("Is shooting True is Called");
             isShooting = true;
             firingCoroutine = StartCoroutine(FireContinuously());
         }
@@ -54,8 +53,6 @@ public class Rifle : Gun
     {
         if(isShooting)
         {
-            Debug.Log("Is shooting False is Called");
-            
             StopCoroutine(firingCoroutine);
             isShooting = false;
         }
@@ -67,7 +64,6 @@ public class Rifle : Gun
         {
             StartCoroutine(CrosshairTilting.Instance.ResetTilt(crosshair));
             shootCount = 0; // Reset shot count after tilting resets
-            isShooting = false;
         }
     }
 
