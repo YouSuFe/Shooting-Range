@@ -5,6 +5,7 @@ using UnityEngine.XR.ARFoundation;
 public class Bullet : MonoBehaviour
 {
     public float speed = 330f;
+    public float rayStartMargin = 0.2f;
     private Rigidbody rb;
     private Vector3 previousPosition;
 
@@ -26,21 +27,23 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit hit;
-        Vector3 rayStart = previousPosition + transform.forward * 0.1f;  // Start the ray a bit in front to avoid self-collision
-        Vector3 rayDirection = transform.position + transform.forward * speed * Time.deltaTime;
-        float rayLength = (rayDirection - previousPosition).magnitude; // The ray length, added buffer to cover fast movement
+        // Update position based on Rigidbody movement
+        Vector3 currentPosition = transform.position;
+        Vector3 direction = (currentPosition - previousPosition).normalized;
+        float distance = Vector3.Distance(currentPosition, previousPosition);
 
-        if (Physics.Raycast(rayStart, rayDirection.normalized, out hit, rayLength))
+        if (Physics.Raycast(previousPosition, direction, out RaycastHit hit, distance))
         {
             Debug.Log("Bullet hit: " + hit.collider.gameObject.name);
             HandleCollision(hit);
             HandleTarget(hit);
-
         }
 
+        // Update previousPosition for next frame
+        previousPosition = currentPosition;
+
         // Visual debugging to show the ray in the Scene view
-        Debug.DrawRay(rayStart, rayDirection * 10, Color.red);
+        Debug.DrawRay(previousPosition, direction * distance * 10, Color.red);
     }
 
     public void Initialize(Vector3 bulletDirection)
@@ -57,13 +60,12 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(InActiveAfterDelay());
+        StartCoroutine(DestroyAfterDelay());
     }
 
     private void HandleCollision(RaycastHit hit)
     {
-        // Here you can check if the hit object is part of the AR environment
-        // For example, checking if it's an ARPlane:
+       
         if ((hit.collider.gameObject.GetComponent<ARPlane>() != null) || hit.collider.gameObject.CompareTag("Target"))
         {
             // If the ray hits an AR detected plane, destroy the bullet
@@ -81,7 +83,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    IEnumerator InActiveAfterDelay()
+    IEnumerator DestroyAfterDelay()
     {
         // Wait for the specified delay
         yield return new WaitForSeconds(3f);
