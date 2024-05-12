@@ -18,11 +18,11 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected RectTransform crosshair; // Reference to the player's camera
     [SerializeField] protected ParticleSystem[] muzzleFlashs;
     [SerializeField] protected AudioClip shootSound;
-    [SerializeField] private AudioClip reloadSound;
+    [SerializeField] protected AudioClip reloadSound;
 
 
     [SerializeField] protected int maxAmmo = 30; // Maximum ammo
-    private float reloadAnimationDuration;
+    protected float reloadAnimationDuration;
     protected int currentAmmo; // Current ammo count
     protected bool isReloading = false; // Is the gun currently reloading
 
@@ -38,6 +38,7 @@ public abstract class Gun : MonoBehaviour
         reloadAnimationDuration = GetAnimationClipDuration(RELOAD_ANIMATION);
         currentAmmo = maxAmmo;
         ammoUI.UpdateAmmoDisplay(currentAmmo);
+        Debug.Log(reloadAnimationDuration);
     }
 
     public abstract void Fire();
@@ -106,4 +107,5 @@ public abstract class Gun : MonoBehaviour
             muzzleFlash.Play();
         }
     }
+
 }

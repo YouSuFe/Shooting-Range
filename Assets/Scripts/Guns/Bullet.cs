@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
 
         if (Physics.Raycast(previousPosition, direction, out RaycastHit hit, distance))
         {
-            Debug.Log("Bullet hit: " + hit.collider.gameObject.name);
+            //Debug.Log("Bullet hit: " + hit.collider.gameObject.name);
             HandleCollision(hit);
             HandleTarget(hit);
         }

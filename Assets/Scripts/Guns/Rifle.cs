@@ -15,13 +15,15 @@ public class Rifle : Gun
 
     public override void Fire()
     {
-        if (isReloading) return;
+        if (isReloading || currentAmmo <= 0)
+        {
+            return; // Prevent firing
+        }
 
         Vector3 targetPoint = ScreenRaycast.Instance.ScreenRaycastEquation(crosshair, shootingPoint);
-
         GameObject bullet = CreateBulletAndShoot(targetPoint);
 
-        if (bullet != null && currentAmmo > 0 && !isReloading)
+        if (bullet != null)
         {
             isShooting = true;
             SoundManager.Instance.PlayShootSound(shootSound);
@@ -31,7 +33,7 @@ public class Rifle : Gun
             shootCount++;
             StartCoroutine(CrosshairTilting.Instance.TiltCrossHair(crosshair, shootCount, maxTilt));
             currentAmmo--;
-            ShowCurrentAmmo(); // Update the ammo display each time a bullet is fired
+            ShowCurrentAmmo(); // Make sure this function updates the UI correctly
             if (currentAmmo <= 0)
             {
                 StartCoroutine(Reload());
@@ -42,7 +44,7 @@ public class Rifle : Gun
 
     public override void StartFiring()
     {
-        if(!isShooting)
+        if(!isShooting && !isReloading)
         {
             isShooting = true;
             firingCoroutine = StartCoroutine(FireContinuously());
@@ -69,10 +71,11 @@ public class Rifle : Gun
 
     IEnumerator FireContinuously()
     {
-        while(isShooting)
+        while (isShooting && !isReloading)
         {
             Fire();
             yield return new WaitForSeconds(firingRate);
         }
     }
+
 }
