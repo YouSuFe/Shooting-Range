@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3262708663436439479}
   - component: {fileID: 7995945497273649090}
   - component: {fileID: 6228849338692257366}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4837,7 +4837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8679229082019450583}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FX_Sparkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4874,7 +4874,7 @@ GameObject:
   - component: {fileID: 4244900117659613975}
   - component: {fileID: 4840826112506064064}
   - component: {fileID: 6858972508748350654}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Gun Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4986,7 +4986,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1173950603465933072}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gun Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5018,7 +5018,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5107603023451854468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5051,7 +5051,7 @@ GameObject:
   - component: {fileID: 3452445208736829183}
   - component: {fileID: 860280405465179385}
   - component: {fileID: 7319532513357003697}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: AmmonationText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5185,7 +5185,7 @@ GameObject:
   - component: {fileID: 3548559634878779648}
   - component: {fileID: 5530394215682497005}
   - component: {fileID: 3239819908317238981}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparkle_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10013,7 +10013,7 @@ GameObject:
   - component: {fileID: 1622941443363445592}
   - component: {fileID: 5447058775648857296}
   - component: {fileID: 8773518584572097040}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10090,6 +10090,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pistol 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738520558268228719, guid: 748d19574625db444877ca05561b6aea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3263699454365990613, guid: 748d19574625db444877ca05561b6aea,
         type: 3}

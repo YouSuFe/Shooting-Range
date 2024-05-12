@@ -13,7 +13,7 @@ public class SpawnTarget : MonoBehaviour
         if (targetPrefab && playerCamera)
         {
             // Determine spawn position in front of the camera
-            Vector3 spawnPosition = playerCamera.position + playerCamera.forward * 3f; // Adjust 5 to your preferred distance
+            Vector3 spawnPosition = playerCamera.position + playerCamera.forward * 0.2f; // Adjust 5 to your preferred distance
             Quaternion spawnRotation = Quaternion.identity; // Default rotation, modify if needed
 
             // Instantiate the target at the calculated position and rotation

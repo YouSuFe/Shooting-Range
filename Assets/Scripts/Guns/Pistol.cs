@@ -12,7 +12,7 @@ public class Pistol : Gun
 
     public override void Fire()
     {
-        if (isReloading) return;
+        if (isReloading  ) return;
 
         Vector3 targetPoint = ScreenRaycast.Instance.ScreenRaycastEquation(crosshair, shootingPoint);
 
@@ -37,7 +37,7 @@ public class Pistol : Gun
 
     public override void StartFiring()
     {
-        if(!isReloading)
+        if(!isReloading && canShoot)
         {
             Fire();
         }

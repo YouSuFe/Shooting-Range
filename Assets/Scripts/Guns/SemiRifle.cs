@@ -15,7 +15,7 @@ public class SemiRifle : Gun
 
     public override void Fire()
     {
-        if (isReloading) return;
+        if (isReloading ) return;
 
         Vector3 targetPoint = ScreenRaycast.Instance.ScreenRaycastEquation(crosshair, shootingPoint);
 
@@ -42,7 +42,7 @@ public class SemiRifle : Gun
 
     public override void StartFiring()
     {
-        if (!isShooting && !isReloading)
+        if (!isShooting && !isReloading && canShoot)
         {
             isShooting = true;
             firingCoroutine = StartCoroutine(FireContinuously());

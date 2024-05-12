@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2413696999202387753}
   - component: {fileID: 6638632750099980072}
   - component: {fileID: 8627177604393832115}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4841,7 +4841,7 @@ GameObject:
   - component: {fileID: 3186258135370222235}
   - component: {fileID: 1482773357254249057}
   - component: {fileID: 4309842901219443384}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Gun Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4953,7 +4953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6475441322811292476}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FX_Sparkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4988,7 +4988,7 @@ GameObject:
   - component: {fileID: 3821680986499378112}
   - component: {fileID: 5959916184873592018}
   - component: {fileID: 990749623991878932}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5062,13 +5062,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8147358500196997719}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Auto Gun Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8147358500196997719
 Transform:
   m_ObjectHideFlags: 0
@@ -5096,7 +5096,7 @@ GameObject:
   - component: {fileID: 1222500141514840541}
   - component: {fileID: 3742947702517898293}
   - component: {fileID: 1451556544767016980}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparkle_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9924,7 +9924,7 @@ GameObject:
   - component: {fileID: 3777494992648074194}
   - component: {fileID: 563830409466949572}
   - component: {fileID: 8300329805600708652}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: AmmonationText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10056,7 +10056,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4422108066275999167}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10089,7 +10089,12 @@ PrefabInstance:
     - target: {fileID: 2336555170174120158, guid: 41b1038c4481a854092ac3410e44f57d,
         type: 3}
       propertyPath: m_Name
-      value: Rifle 2
+      value: Rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336555170174120158, guid: 41b1038c4481a854092ac3410e44f57d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3109397033491163748, guid: 41b1038c4481a854092ac3410e44f57d,
         type: 3}
@@ -10156,7 +10161,15 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6475441322811292476}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2336555170174120158, guid: 41b1038c4481a854092ac3410e44f57d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2944212772296556475}
+    - targetCorrespondingSourceObject: {fileID: 2336555170174120158, guid: 41b1038c4481a854092ac3410e44f57d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7488507909064508949}
   m_SourcePrefab: {fileID: 100100000, guid: 41b1038c4481a854092ac3410e44f57d, type: 3}
 --- !u!4 &8339065549773482094 stripped
 Transform:
@@ -10164,3 +10177,55 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6385123300042261002}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8714921868181795540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2336555170174120158, guid: 41b1038c4481a854092ac3410e44f57d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6385123300042261002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2944212772296556475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714921868181795540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5077db95317b54c8697685849aa7c10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootingPoint: {fileID: 4422108066275999167}
+  gunAnimator: {fileID: 7488507909064508949}
+  bulletPrefab: {fileID: 6511439296780289277, guid: a6a5bfe561d394b0a890301f603c955a,
+    type: 3}
+  ammoUI: {fileID: 4309842901219443384}
+  crosshair: {fileID: 0}
+  muzzleFlashs:
+  - {fileID: 6638632750099980072}
+  - {fileID: 3742947702517898293}
+  shootSound: {fileID: 8300000, guid: 9137bc909ac0d42cea6253111f804b57, type: 3}
+  reloadSound: {fileID: 8300000, guid: a6c59de9416964be1a7176ffe7fd3bf6, type: 3}
+  maxAmmo: 30
+  isShooting: 0
+--- !u!95 &7488507909064508949
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714921868181795540}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9d2ad1051c9d481e8e9158f20d6a9ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

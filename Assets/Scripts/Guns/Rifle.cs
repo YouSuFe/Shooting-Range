@@ -15,7 +15,7 @@ public class Rifle : Gun
 
     public override void Fire()
     {
-        if (isReloading || currentAmmo <= 0)
+        if (isReloading || currentAmmo <= 0 )
         {
             return; // Prevent firing
         }
@@ -44,7 +44,7 @@ public class Rifle : Gun
 
     public override void StartFiring()
     {
-        if(!isShooting && !isReloading)
+        if(!isShooting && !isReloading && canShoot)
         {
             isShooting = true;
             firingCoroutine = StartCoroutine(FireContinuously());

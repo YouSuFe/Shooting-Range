@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2413696999202387753}
   - component: {fileID: 6638632750099980072}
   - component: {fileID: 8627177604393832115}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4841,7 +4841,7 @@ GameObject:
   - component: {fileID: 3186258135370222235}
   - component: {fileID: 1482773357254249057}
   - component: {fileID: 4309842901219443384}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Gun Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4953,7 +4953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6475441322811292476}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FX_Sparkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4988,7 +4988,7 @@ GameObject:
   - component: {fileID: 3821680986499378112}
   - component: {fileID: 5959916184873592018}
   - component: {fileID: 990749623991878932}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5062,7 +5062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8147358500196997719}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Semi Rifle Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5096,7 +5096,7 @@ GameObject:
   - component: {fileID: 1222500141514840541}
   - component: {fileID: 3742947702517898293}
   - component: {fileID: 1451556544767016980}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparkle_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9924,7 +9924,7 @@ GameObject:
   - component: {fileID: 3777494992648074194}
   - component: {fileID: 563830409466949572}
   - component: {fileID: 8300329805600708652}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: AmmonationText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10056,7 +10056,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4422108066275999167}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10141,6 +10141,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smg1
       objectReference: {fileID: 0}
+    - target: {fileID: 954277450596161486, guid: 23bf6ec2ea670874eaf412bd4e6d0f0f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -10164,7 +10169,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 954277450596161486, guid: 23bf6ec2ea670874eaf412bd4e6d0f0f,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8779581831400731696}
+      addedObject: {fileID: 5537161309054969001}
   m_SourcePrefab: {fileID: 100100000, guid: 23bf6ec2ea670874eaf412bd4e6d0f0f, type: 3}
 --- !u!1 &306794467127856221 stripped
 GameObject:
@@ -10185,11 +10190,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 4422108066275999167}
-  gunAnimator: {fileID: 8779581831400731696}
+  gunAnimator: {fileID: 0}
   bulletPrefab: {fileID: 6511439296780289277, guid: a6a5bfe561d394b0a890301f603c955a,
     type: 3}
   ammoUI: {fileID: 4309842901219443384}
-  crosshair: {fileID: 8305493213349869824}
+  crosshair: {fileID: 0}
   muzzleFlashs:
   - {fileID: 6638632750099980072}
   - {fileID: 3742947702517898293}
@@ -10197,7 +10202,7 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: a6c59de9416964be1a7176ffe7fd3bf6, type: 3}
   maxAmmo: 30
   isShooting: 0
---- !u!95 &8779581831400731696
+--- !u!95 &5537161309054969001
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0

@@ -18,13 +18,14 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected RectTransform crosshair; // Reference to the player's camera
     [SerializeField] protected ParticleSystem[] muzzleFlashs;
     [SerializeField] protected AudioClip shootSound;
-    [SerializeField] protected AudioClip reloadSound;
+    [SerializeField] private AudioClip reloadSound;
 
 
     [SerializeField] protected int maxAmmo = 30; // Maximum ammo
-    protected float reloadAnimationDuration;
+    private float reloadAnimationDuration;
     protected int currentAmmo; // Current ammo count
     protected bool isReloading = false; // Is the gun currently reloading
+    protected bool canShoot = true;
 
     protected virtual void Awake()
     {
@@ -38,7 +39,6 @@ public abstract class Gun : MonoBehaviour
         reloadAnimationDuration = GetAnimationClipDuration(RELOAD_ANIMATION);
         currentAmmo = maxAmmo;
         ammoUI.UpdateAmmoDisplay(currentAmmo);
-        Debug.Log(reloadAnimationDuration);
     }
 
     public abstract void Fire();
@@ -58,6 +58,7 @@ public abstract class Gun : MonoBehaviour
     protected virtual IEnumerator Reload()
     {
         isReloading = true;
+        canShoot = false;
         SoundManager.Instance.PlayReloadSound(reloadSound);
         gunAnimator.SetTrigger(RELOAD_ANIMATION_TRIGGER);
         float animationSpeed = gunAnimator.GetFloat(RELOAD_ANIMATION_SPEED);
@@ -68,6 +69,7 @@ public abstract class Gun : MonoBehaviour
         currentAmmo = maxAmmo; // Refill Ammo
         ShowCurrentAmmo(); // Update UI
         isReloading = false;
+        canShoot = true;
     }
 
     protected void ShowCurrentAmmo()
@@ -105,6 +107,24 @@ public abstract class Gun : MonoBehaviour
         foreach(ParticleSystem muzzleFlash in muzzleFlashs)
         {
             muzzleFlash.Play();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Wall") || other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            gunAnimator.SetTrigger("LiftGun");
+            canShoot = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Wall") || other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            gunAnimator.SetTrigger("LowerGun");
+            canShoot = true;
         }
     }
 
